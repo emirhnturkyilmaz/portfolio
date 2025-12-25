@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en" style="scroll-behavior: smooth;"> <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emirhan Türkyılmaz - Indie Game Dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-dark: #030712;
+      --bg-panel: rgba(17, 24, 39, 0.7);
+      --primary: #3b82f6;      
+      --accent: #60a5fa;        
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.06);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 15px; }
+    .logo-box {
+      width: 45px; height: 45px;
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-weight: 800; font-family: 'Space Grotesk';
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+    }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 14px; font-weight: 500; transition: 0.3s;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      padding: 60px 0 120px;
+    }
+    .hero-content h1 {
+      font-family: 'Space Grotesk';
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1; margin-bottom: 24px;
+      background: linear-gradient(to bottom, #fff, #94a3b8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-content p {
+      font-size: 18px; color: var(--text-muted);
+      max-width: 540px; margin-bottom: 32px;
+    }
+
+    .badge-group { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .badge {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: var(--accent);
+      padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;
+    }
+
+    .glass-card {
+      background: var(--bg-panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .profile-card { text-align: center; }
+    .profile-card:hover { transform: translateY(-10px); border-color: rgba(59, 130, 246, 0.3); }
+    
+    .avatar {
+      width: 100px; height: 100px; margin: 0 auto 20px;
+      border-radius: 50%; background: #1e293b;
+      display: grid; place-items: center; font-size: 32px;
+      border: 4px solid var(--bg-dark);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .btn {
+      padding: 14px 28px; border-radius: 12px; font-weight: 600;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+      transition: 0.3s; font-size: 15px; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--accent); transform: scale(1.02); }
+    
+    .btn-trailer { 
+      background: rgba(96, 165, 250, 0.1); 
+      border: 1px solid rgba(96, 165, 250, 0.3); 
+      color: var(--accent); 
+    }
+    .btn-trailer:hover { 
+      background: rgba(96, 165, 250, 0.2); 
+      border-color: var(--accent);
+      transform: scale(1.02); 
+    }
+
+    .btn-outline { border: 1px solid var(--border); color: var(--text-main); }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); }
+
+    .section-title {
+      font-family: 'Space Grotesk'; font-size: 32px; margin-bottom: 40px;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .section-title::after { content: ''; height: 1px; background: var(--border); flex: 1; }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .game-card {
+      background: var(--bg-panel);
+      border-radius: var(--radius);
+      overflow: hidden; border: 1px solid var(--border);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .game-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+    
+    .game-info { padding: 32px; flex-grow: 1; display: flex; flex-direction: column; }
+    .game-info h3 { font-family: 'Space Grotesk'; font-size: 24px; margin-bottom: 12px; color: #fff; }
+    .game-info p { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; flex-grow: 1; }
+
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+      display: none; justify-content: center; align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #0f172a; border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 40px; border-radius: var(--radius); max-width: 420px;
+      text-align: center; position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-modal-content {
+      max-width: 900px; width: 95%; padding: 10px; background: #000;
+    }
+    .video-container {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      border-radius: 12px;
+    }
+    .video-container iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+    }
+
+    .modal-content h3 { font-family: 'Space Grotesk'; font-size: 24px; margin-bottom: 15px; color: #fff; }
+    .modal-content p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; }
+    .close-modal {
+      position: absolute; top: 15px; right: 20px; 
+      cursor: pointer; color: var(--text-muted); font-size: 24px; transition: 0.2s;
+      z-index: 10;
+    }
+    .close-modal:hover { color: #fff; }
+
+    .contact { padding: 100px 0; text-align: center; }
+    .social-links { display: flex; justify: center; gap: 16px; margin-top: 30px; justify-content: center; }
+    .social-icon {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--bg-panel); border: 1px solid var(--border);
+      display: grid; place-items: center; color: white; text-decoration: none;
+      transition: 0.3s; cursor: pointer;
+    }
+    .social-icon:hover { background: var(--primary); transform: rotate(10deg); }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 20px; }
+      .hero-content p { margin: 0 auto 32px; }
+      .badge-group { justify-content: center; }
+      .nav-links { display: none; }
+      .game-info div { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal-overlay" id="steamModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal('steamModal')">&times;</span>
+      <i class="fab fa-steam" style="font-size: 48px; color: var(--primary); margin-bottom: 20px;"></i>
+      <h3>NOT YET!</h3>
+      <p>I don’t have a Steam release yet, but I’m working hard toward it.<br>Keep creating great things!</p>
+      <a href="https://melaisstudio.itch.io/" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center;">
+        Check Itch.io for now
+      </a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-content video-modal-content">
+      <span class="close-modal" onclick="closeVideoModal()">&times;</span>
+      <div class="video-container">
+        <iframe id="trailerFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav>
+      <div class="brand">
+        <div class="logo-box">E</div>
+        <div style="font-family: 'Space Grotesk'; font-weight: 700; letter-spacing: 0.5px;">EMİRHAN TÜRKYILMAZ</div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="badge-group">
+            <span class="badge"><i class="fas fa-university"></i> Dokuz Eylul University</span>
+            <span class="badge"><i class="fas fa-code"></i> Computer Science</span>
+            <span class="badge"><i class="fas fa-gamepad"></i> Indie Game Dev</span>
+          </div>
+          <h1>Building Game<br><span style="color: var(--primary)">Experiences.</span></h1>
+          <p>
+            CS student at Dokuz Eylul University, working on indie game projects.
+          </p>
+          <div class="hero-btns">
+            <a href="#games" class="btn btn-primary">My Games <i class="fas fa-arrow-right"></i></a>
+            <a href="#contact" class="btn btn-outline" style="margin-left: 12px;">Get in Touch</a>
+          </div>
+        </div>
+
+        <aside class="glass-card profile-card">
+          <div class="avatar">ET</div>
+          <h2 style="font-family: 'Space Grotesk'; font-size: 20px;">Emirhan Türkyılmaz</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Birth year: 2006</p>
+          <div style="text-align: left; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; font-size: 13px;">
+            <div style="margin-bottom: 8px;"><i class="fas fa-check" style="color:var(--accent)"></i> Unity / C#</div>
+            <div style="margin-bottom: 8px;"><i class="fas fa-check" style="color:var(--accent)"></i> Gameplay systems & mechanics</div>
+            <div><i class="fas fa-check" style="color:var(--accent)"></i> Shaders, VFX & post-processing</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" style="margin-bottom: 100px;">
+        <h2 class="section-title">About Me</h2>
+        <p style="color:var(--text-muted); font-size:18px; max-width: 800px;">
+          I'm a Computer Science student and indie game developer. I focus on creating playable experiences with a deep emphasis on atmosphere and mechanics.
+        </p>
+      </section>
+
+      <section id="games">
+        <h2 class="section-title">Games</h2>
+        <div class="games-grid">
+          
+          <article class="game-card">
+            <div class="game-info">
+              <div style="text-transform: uppercase; font-size: 12px; color: var(--primary); font-weight: 700; margin-bottom: 8px; letter-spacing: 2px;">Released</div>
+              <h3>The Sujuk Seller</h3>
+              <p>An atmosphere-driven psychological horror experience about routine, discomfort, and the quiet feeling that something isn’t right.</p>
+              <div style="display: flex; gap: 12px;">
+                <a href="https://melaisstudio.itch.io/thesujukseller" target="_blank" class="btn-primary btn" style="padding: 12px 24px; font-size: 14px; flex: 1; justify-content: center;">Play on Itch.io</a>
+                <button onclick="openVideoModal('https://www.youtube.com/embed/JmTO0zVa0lE?autoplay=1')" class="btn-trailer btn" style="padding: 12px 24px; font-size: 14px; flex: 1; justify-content: center;"><i class="fab fa-youtube"></i> Watch Trailer</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="game-card" style="border-style: dashed; border-color: rgba(255,255,255,0.1);">
+            <div class="game-info">
+              <div style="text-transform: uppercase; font-size: 12px; color: var(--text-muted); font-weight: 700; margin-bottom: 8px; letter-spacing: 2px;">In Development</div>
+              <h3>The Shameful Fears: Let’s Just Forget It</h3>
+              <p>A psychological horror experience about living with something you can’t undo — and the quiet fear that follows.</p>
+              <div>
+                <button class="btn btn-outline" style="width: 100%; justify-content: center; opacity: 0.5; cursor: not-allowed;" disabled>Coming Soon</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <h2 style="font-family: 'Space Grotesk'; font-size: 40px; margin-bottom: 16px;">Contact</h2>
+        <p style="color: var(--text-muted);">For games, collaborations, or feedback:</p>
+        <a href="mailto:melaisstudio@gmail.com" style="color: var(--primary); font-size: clamp(16px, 4vw, 24px); text-decoration: none; font-weight: 700; display: block; margin: 24px 0; word-break: break-all;">
+          melaisstudio@gmail.com
+        </a>
+        
+        <div class="social-links">
+          <a href="https://instagram.com/emirhnturkyilmaz" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a onclick="openModal('steamModal')" class="social-icon"><i class="fab fa-steam"></i></a>
+          <a href="mailto:melaisstudio@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+        </div>
+      </section>
+    </main>
+
+    <footer style="padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 12px; letter-spacing: 1px;">
+      © 2025 EMIRHAN TURKYILMAZ — INDIE GAME DEV
+    </footer>
+  </div>
+
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function openVideoModal(videoUrl) {
+      const frame = document.getElementById('trailerFrame');
+      frame.src = videoUrl;
+      document.getElementById('videoModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal() {
+      const frame = document.getElementById('trailerFrame');
+      frame.src = "";
+      document.getElementById('videoModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+  
+    window.onclick = function(event) {
+      if (event.target.className === 'modal-overlay') {
+        closeModal('steamModal');
+        closeVideoModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
